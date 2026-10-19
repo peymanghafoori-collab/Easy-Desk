@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-180 -180 360 360" width="512" height="512">
+  <defs>
+    <linearGradient id="gDark" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5565E0"/><stop offset="1" stop-color="#2B3598"/></linearGradient>
+    <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#78B0F5"/><stop offset="1" stop-color="#3F7AD1"/></linearGradient>
+    <linearGradient id="gTeal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#86E4D4"/><stop offset="1" stop-color="#3FB1A2"/></linearGradient>
+    <linearGradient id="gText" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2B3598"/><stop offset="0.65" stop-color="#3F5BC4"/><stop offset="1" stop-color="#3FB1A2"/></linearGradient>
+    <radialGradient id="gShadow"><stop offset="0" stop-color="#2B3598" stop-opacity="0.18"/><stop offset="1" stop-color="#2B3598" stop-opacity="0"/></radialGradient>
+  </defs>
+  <g>
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-62,-88 L-150,0 L-62,88" stroke="url(#gDark)" stroke-width="24"/>
+<path d="M-22,-128 L0,-150 L22,-128" stroke="url(#gBlue)" stroke-width="24"/>
+<path d="M62,-88 L150,0 L62,88" stroke="url(#gTeal)" stroke-width="24"/>
+<path d="M-22,128 L0,150 L22,128" stroke="url(#gTeal)" stroke-width="24"/>
+<path d="M-20,50 L40,-10" stroke="url(#gBlue)" stroke-width="24"/>
+<path d="M-50,20 L10,-40" stroke="url(#gBlue)" stroke-width="24"/>
+    </g>
+    <circle cx="-150" cy="0" r="17" fill="url(#gDark)"/>
+<circle cx="0" cy="-150" r="17" fill="url(#gBlue)"/>
+<circle cx="-20" cy="50" r="17" fill="url(#gBlue)"/>
+<circle cx="40" cy="-10" r="17" fill="url(#gBlue)"/>
+<circle cx="-50" cy="20" r="17" fill="url(#gBlue)"/>
+<circle cx="10" cy="-40" r="17" fill="url(#gBlue)"/>
+<circle cx="150" cy="0" r="17" fill="url(#gTeal)"/>
+<circle cx="0" cy="150" r="17" fill="url(#gTeal)"/>
+    <g fill="#FFFFFF" opacity="0.9"><circle cx="-150" cy="0" r="5.5"/><circle cx="0" cy="-150" r="5.5"/><circle cx="-20" cy="50" r="5.5"/><circle cx="40" cy="-10" r="5.5"/><circle cx="-50" cy="20" r="5.5"/><circle cx="10" cy="-40" r="5.5"/><circle cx="150" cy="0" r="5.5"/><circle cx="0" cy="150" r="5.5"/></g>
+  </g>
+</svg>
