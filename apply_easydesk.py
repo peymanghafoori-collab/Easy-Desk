@@ -71,6 +71,14 @@ rc = "flutter/windows/runner/Runner.rc"
 edit(rc, r'VALUE "CompanyName", "[^"]*"', f'VALUE "CompanyName", "{APP_NAME}"')
 edit(rc, r'VALUE "FileDescription", "[^"]*"', f'VALUE "FileDescription", "{APP_NAME} Remote Desktop"')
 edit(rc, r'VALUE "ProductName", "[^"]*"', f'VALUE "ProductName", "{APP_NAME}"')
+edit(rc, r'VALUE "InternalName", "[^"]*"', f'VALUE "InternalName", "{APP_NAME}"')
+edit(rc, r'VALUE "OriginalFilename", "[^"]*"', f'VALUE "OriginalFilename", "{APP_NAME}.exe"')
+
+# same for the self-extracting installer (the single .exe people double-click)
+portable = "libs/portable/Cargo.toml"
+edit(portable, r'ProductName = "[^"]*"', f'ProductName = "{APP_NAME}"')
+edit(portable, r'OriginalFilename = "[^"]*"', f'OriginalFilename = "{APP_NAME}.exe"')
+edit(portable, r'FileDescription = "[^"]*"', f'FileDescription = "{APP_NAME} Remote Desktop"')
 
 # 3) icons and logos
 for name in ("icon.ico", "tray-icon.ico", "32x32.png", "64x64.png", "128x128.png",
