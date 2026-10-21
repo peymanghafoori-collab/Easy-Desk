@@ -16,7 +16,7 @@ from pathlib import Path
 
 # ----------------------------- settings ---------------------------------
 APP_NAME = "EasyDesk"
-SERVER = "192.168.1.20"  # ID / rendezvous server (hbbs). Relay (hbbr) is derived from it.
+SERVER = "sanat.01system.ir"  # ID / rendezvous server (hbbs). Relay (hbbr) is derived from it.
 KEY = "7gCWMUOTEbUIQJveXrvhgm2eZvFptk0d9VTG82dawbY="  # contents of id_ed25519.pub
 # -------------------------------------------------------------------------
 
