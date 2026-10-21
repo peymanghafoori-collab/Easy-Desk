@@ -18,6 +18,9 @@ from pathlib import Path
 APP_NAME = "EasyDesk"
 SERVER = "sanat.01system.ir"  # ID / rendezvous server (hbbs). Relay (hbbr) is derived from it.
 KEY = "7gCWMUOTEbUIQJveXrvhgm2eZvFptk0d9VTG82dawbY="  # contents of id_ed25519.pub
+# Address of the ads.json file that controls the ad banners (titles, links, images).
+# Leave it empty ("") to build without any ad banner.
+ADS_URL = "https://raw.githubusercontent.com/peymanghafoori-collab/Easy-Desk/refs/heads/easy-desk/ads.json"
 # -------------------------------------------------------------------------
 
 ROOT = Path.cwd()
@@ -89,5 +92,38 @@ copy_asset("easydesk-icon.svg", "res/scalable.svg")
 copy_asset("app_icon.ico", "flutter/windows/runner/resources/app_icon.ico")
 copy_asset("icon.ico", "flutter/assets/icon.ico")  # used by the installer for shortcuts
 copy_asset("easydesk-icon.svg", "flutter/assets/icon.svg")
+
+# 4) dynamic ad banner on the home page (content comes from ADS_URL at run time)
+if ADS_URL:
+    if not ADS_URL.startswith("https://") or "'" in ADS_URL or "$" in ADS_URL:
+        fail("ADS_URL must start with https:// and must not contain ' or $")
+    widget_src = (ASSETS / "easydesk_ad_banner.dart").read_text(encoding="utf-8")
+    if "__ADS_URL__" not in widget_src:
+        fail("easydesk_ad_banner.dart has no __ADS_URL__ placeholder")
+    widget_dst = ROOT / "flutter/lib/desktop/widgets/easydesk_ad_banner.dart"
+    widget_dst.write_text(widget_src.replace("__ADS_URL__", ADS_URL), encoding="utf-8")
+    print("wrote   flutter/lib/desktop/widgets/easydesk_ad_banner.dart")
+
+    home = ROOT / "flutter/lib/desktop/pages/desktop_home_page.dart"
+    if not home.exists():
+        fail("desktop_home_page.dart not found")
+    home_text = home.read_text(encoding="utf-8")
+    if "EasyDeskAdBanner" in home_text:
+        print("already patched desktop_home_page.dart")
+    else:
+        imp = "import '../widgets/button.dart';\n"
+        if home_text.count(imp) != 1:
+            fail("import anchor not found in desktop_home_page.dart")
+        home_text = home_text.replace(imp, imp + "import '../widgets/easydesk_ad_banner.dart';\n")
+        # add the banner as the last item of the left pane, after the ID/password boards
+        anchor = re.compile(
+            r"(      \),\n)(    \];\n    if \(isIncomingOnly\) \{\n      children\.addAll\(\[)")
+        home_text, n = anchor.subn(
+            lambda m: m.group(1) + "      const EasyDeskAdBanner(),\n" + m.group(2),
+            home_text, count=1)
+        if n != 1:
+            fail("left pane anchor not found in desktop_home_page.dart")
+        home.write_text(home_text, encoding="utf-8")
+        print("patched flutter/lib/desktop/pages/desktop_home_page.dart")
 
 print(f"\nDone: {APP_NAME} -> server {SERVER}")
