@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "refresh_minutes": 30,
+  "rotate_seconds": 8,
+  "banners": [
+    {
+      "text": "01system",
+      "image": "https://example.com/banner1.png",
+      "link": "https://example.com/offer"
+    },
+    {
+      "text": "hatami",
+      "image": "https://example.com/banner2.png",
+      "link": "https://example.com/help"
+    },
+    {
+      "text": "باتری",
+      "image": "",
+      "link": "https://example.com/support"
+    }
+  ]
+}
